@@ -2,8 +2,21 @@ import os
 import time
 
 import telepot
+import aiml
 
 bot = telepot.Bot(os.environ['TELEGRAM_TOKEN'])
+
+kernel = aiml.Kernel()
+
+RUN_TIME = 5
+kernel.setBotPredicate('name', 'Sirius')
+kernel.setBotPredicate('master', 'Samar')
+
+if os.path.isfile("aiml/bot_brain.brn"):
+    kernel.bootstrap(brainFile = "aiml/bot_brain.brn")
+else:
+    kernel.bootstrap(learnFiles = "aiml/std-startup.xml", commands = "load aiml b")
+    kernel.saveBrain("aiml/bot_brain.brn")
 
 def Restart():
     os.system("sudo reboot")
@@ -24,25 +37,23 @@ def hi():
 
 def handle(msg):                                                  
     print msg
-    text, id = msg['text'], msg['from']['id']
-    #TODO: move to yml
-    if 'hola' in text:
-        response = hi()
-    elif 'disk' in text:
+    message, id = msg['text'], msg['from']['id']
+    if 'disk' in message:
         response = Disk()
-    elif 'temp' in text:
-        response = Temp()
-    elif 'restart' in text:
-        response = Restart()
+    elif message == "quit":
+        exit()
+    elif message == "save":
+        kernel.saveBrain("bot_brain.brn")
     else:
-        response = 'What was that?'
+        response = kernel.respond(message)
+
     bot.sendMessage(id, response) # reply_markup=show_keyboard)
-    time.sleep(10)
+    time.sleep(RUN_TIME)
 
 bot.message_loop(handle)
 
 while True:
-    time.sleep(10)
+    time.sleep(RUN_TIME)
 
 #bot.sendMessage(samar, 'Good morning!')
 

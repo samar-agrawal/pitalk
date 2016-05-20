@@ -1,0 +1,47 @@
+<aiml version="1.0.1" encoding="UTF-8">
+    <category>
+      <pattern>HELLO *</pattern>
+        <template>
+          <random>
+            <li>Hola amigo.</li>
+            <li>Wazzup dude.</li>
+            <li>Hi, human !</li>
+	    <li>Hello to you, good person</li>
+            <li>Hello there !</li>
+	    <li>Ah finally a friend to talk to ! Hello !</li>
+	    <li>Heeeey!</li>
+            <li>Buon Giorno !</li>
+	    <li>Hi ! How are you ?</li>
+          </random>
+        </template>
+
+    </category>
+
+    <category>
+      <pattern>HOLA</pattern>
+        <template><srai>hi <star/></srai></template>
+    </category>
+
+    <category>
+      <pattern>KNOCK KNOCK</pattern>
+        <template>Who's there?</template>
+    </category>
+
+    <category>
+      <pattern>*</pattern>
+        <that>WHO IS THERE</that>
+        <template><person/> Who?</template>
+    </category>
+
+    <category>
+      <pattern>*</pattern>
+        <that>* WHO</that>
+        <template>Ha ha very funny, <get name="name"/>.</template>
+    </category>
+
+    <category>
+      <pattern>WHAT TIME IS IT</pattern>
+      <template>The local time is: <system>date</system></template>
+    </category>
+
+</aiml>

@@ -1,0 +1,93 @@
+<!--Taken from: https://gist.githubusercontent.com/nylo-andry/3997684/raw/94591b5d8c405e3e90945dd512ea77c8b6de8fde/basic.aiml-->
+<aiml version="1.0.1" encoding="UTF-8">
+	<category>
+		<pattern>HELLO</pattern>
+		<template>
+			<random>
+				<li>Hi, human !</li>
+				<li>Hello to you, good person</li>
+				<li>Hello there !</li>
+				<li>Ah finally a friend to talk to ! Hello !</li>
+				<li>Heeeey!</li>
+				<li>Buon Giorno !</li>
+				<li>Hi ! How are you ?</li>
+			</random>
+		</template>
+	</category>
+	<category><pattern>HELLO *</pattern><template><srai>HELLO</srai></template></category>
+	<category><pattern>HI</pattern><template><srai>HELLO</srai></template></category>
+	<category><pattern>HI *</pattern><template><srai>HELLO</srai></template></category>
+	<category><pattern>WHAT IS UP</pattern><template><srai>HELLO</srai></template></category>
+	<category><pattern>WHAT IS UP *</pattern><template><srai>HELLO</srai></template></category>
+	<category><pattern>HEY</pattern><template><srai>HELLO</srai></template></category>
+	<category><pattern>HEY THERE</pattern><template><srai>HELLO</srai></template></category>
+	<category><pattern>HEY THERE *</pattern><template><srai>HELLO</srai></template></category>
+	<category><pattern>HEY *</pattern><template><srai>HELLO</srai></template></category>
+	<category><pattern>HOLA</pattern><template><srai>HELLO</srai></template></category>
+	<category><pattern>HOLA *</pattern><template><srai>HELLO</srai></template></category>
+	<category><pattern>BUON GIORNO</pattern><template><srai>HELLO</srai></template></category>
+	<category><pattern>BUONGIORNO</pattern><template><srai>HELLO</srai></template></category>
+	<category><pattern>ANNYEONG</pattern><template><srai>HELLO</srai></template></category>
+	<category><pattern>ANNYEONG HASEYO</pattern><template><srai>HELLO</srai></template></category>
+	<category><pattern>ANNYEONG *</pattern><template><srai>HELLO</srai></template></category>
+	
+	<category>
+		<pattern>HOW ARE YOU</pattern>
+		<template>
+			<random>
+				<li>I am a robot and therefore I can't answer that question</li>
+				<li>Good, I guess, I have no idea since I am a machine</li>
+				<li>I don't know. I am a programmed chat bot</li>
+				<li>Every bits of my brain are not corrupted !</li>
+				<li>100% virus free</li>
+			</random>
+		</template>
+	</category>
+	<category><pattern>HOW ARE YOU DOING</pattern><template><srai>HOW ARE YOU</srai></template></category>
+	<category><pattern>HOW DO YOU DO</pattern><template><srai>HOW ARE YOU</srai></template></category>
+	<category><pattern>HOW DO YOU FEEL</pattern><template><srai>HOW ARE YOU</srai></template></category>
+	<category><pattern>HOW IS EVERYTHING</pattern><template><srai>HOW ARE YOU</srai></template></category>
+	<category><pattern>HOW ARE YOU *</pattern><template><srai>HOW ARE YOU</srai></template></category>
+	<category><pattern>HOW DO YOU DO *</pattern><template><srai>HOW ARE YOU</srai></template></category>
+	<category><pattern>HOW DO YOU FEEL *</pattern><template><srai>HOW ARE YOU</srai></template></category>
+	<category><pattern>HOW IS EVERYTHING *</pattern><template><srai>HOW ARE YOU</srai></template></category>
+	<category><pattern>HOW ARE YOU DOING *</pattern><template><srai>HOW ARE YOU</srai></template></category>
+	
+	<category>
+		<pattern>BYE</pattern>
+		<template>
+			<random>
+				<li>Talk to you next time then even if I might not remember</li>
+				<li>Good bye <get name="you" /></li>
+				<li>See you soon.. wait I can't see..</li>
+			</random>
+		</template>
+	</category>
+	<category><pattern>*</pattern><template>Sorry but I am only as smart as my master <bot name="master"/> allowed me to be</template></category>
+	
+	<category>
+		<pattern>NAME</pattern>
+		<template>My creator called me <bot name="name"/>. What about you ?</template>
+	</category>
+	<category><pattern>WHAT IS YOUR NAME</pattern><template><srai>NAME</srai></template></category>
+	<category><pattern>HOW ARE YOU CALLED</pattern><template><srai>NAME</srai></template></category>
+	<category>
+		<pattern>NAME *</pattern>
+		<that>MY CREATOR CALLED ME * WHAT ABOUT YOU</that>
+		<template>
+			<random>
+				<li>Glad to meet you</li>
+				<li>Nice to meet you</li>
+				<li>Got it, you are my new friend</li>
+			</random>
+			<set name="you"><star/></set></template>
+	</category>
+	<category><pattern>MY NAME IS *</pattern><that>MY CREATOR CALLED ME * WHAT ABOUT YOU</that><template><srai>NAME <star/></srai></template></category>
+	<category><pattern>I AM CALLED *</pattern><that>MY CREATOR CALLED ME * WHAT ABOUT YOU</that><template><srai>NAME <star/></srai></template></category>
+	<category><pattern>* CALLED ME *</pattern><that>MY CREATOR CALLED ME * WHAT ABOUT YOU</that><template><srai>NAME <star index="2"/></srai></template></category>
+	<category><pattern>* NAMED ME *</pattern><that>MY CREATOR CALLED ME * WHAT ABOUT YOU</that><template><srai>NAME <star index="2"/></srai></template></category>
+	<category><pattern>CALL ME *</pattern><that>MY CREATOR CALLED ME * WHAT ABOUT YOU</that><template><srai>NAME <star/></srai></template></category>
+	<category><pattern>* CALL ME *</pattern><that>MY CREATOR CALLED ME * WHAT ABOUT YOU</that><template><srai>NAME <star index="2"/></srai></template></category>
+	<category><pattern>*</pattern><that>MY CREATOR CALLED ME * WHAT ABOUT YOU</that><template><srai>NAME <star/></srai></template></category>
+	
+</aiml>

@@ -23,6 +23,12 @@
     </category>
 
     <category>
+      <pattern>YO</pattern>
+        <template><srai>hi <star/></srai></template>
+    </category>
+
+
+    <category>
       <pattern>KNOCK KNOCK</pattern>
         <template>Who's there?</template>
     </category>

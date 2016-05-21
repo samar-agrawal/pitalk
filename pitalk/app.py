@@ -1,34 +1,43 @@
 '''Perform action / respond using aiml through telegram '''
 
 import os
-import time
-
+import sys
 import telepot
+
+from telepot.delegate import per_chat_id, create_open
+from telepot.namedtuple import Message
+
 from . import KERNEL
-from utils import restart, temperature, disk_space, perform_action, ACTION_DICT
+from .utils import perform_action, ACTION_DICT
 
-BOT = telepot.Bot(os.environ['TELEGRAM_TOKEN'])
+TOKEN = os.environ['TELEGRAM_TOKEN'] or sys.argv[1]
 
-RUN_TIME = 5
+class MessageProcessor(telepot.helper.ChatHandler):
+    '''Initiate chat socket for a client and respond to the input query'''
 
-def handle(msg):
-    '''handle user input and perform some action '''
-    print msg
+    def __init__(self, seed_tuple, timeout):
+        super(MessageProcessor, self).__init__(seed_tuple, timeout)
 
-    message, username, user_id = msg['text'], msg['from']['first_name'], msg['from']['id']
+    def on_chat_message(self, msg):
+        '''process and response message'''
 
-    if any(q in message for q in ACTION_DICT.keys()):
-       response = perform_action(message, user_id)
-    else:
-        response = KERNEL.respond(message)
+        ntuple = Message(**msg)
 
-    if not response:
-        response = KERNEL.respond('exit')
+        if telepot.glance(msg)[0] == 'text':
 
-    BOT.sendMessage(user_id, response)
-    time.sleep(RUN_TIME)
+            if any(q in ntuple.text for q in ACTION_DICT.keys()):
+                response = perform_action(ntuple.text, ntuple.from_.id)
+            else:
+                response = KERNEL.respond(ntuple.text)
 
-BOT.message_loop(handle)
+        #if not response:
+            #response = self.sender.sendMessage(
+               # chat_id, 'I do not understand your last message.', reply_to_message_id=msg_id)
+        self.sender.sendMessage(response)
 
-while True:
-    time.sleep(RUN_TIME)
+
+BOT = telepot.DelegatorBot(TOKEN, [
+    (per_chat_id(), create_open(MessageProcessor, timeout=10)),
+])
+
+BOT.message_loop(run_forever=True)

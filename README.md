@@ -3,9 +3,7 @@
 
 ### Dependencies
 * [Telepot] - Python Telegram library 
-  - pip install telepot
-* [PyAIML] - Python library to parse AIML (Artificial Intelligence Markup Language)
-  - pip install pyaiml
+* [aiml] - Python AIML library to parse AIML (Artificial Intelligence Markup Language)
 
 ### Story
 The idea came when i first got my raspberry pi, ya i was waiting for a new latest shiny version of Raspberry pi to hit the streets, and as soon as it was out, i got it. So to start with i wanted to try something not as complicated as building home automation system, one of the book raspberry pi projects has this interesting thing about making a python thing which can interact with the pi, you know just the normal stuff about checking the disk size and rebooting using whatsapp.
@@ -16,3 +14,14 @@ When i further started integrating telegram + python + raspberry, i thought why 
 
 ### Thanks/Credits
 Most of the AIML files have been borrowed from
+* http://www.alicebot.org/aiml/aaa/
+* https://gist.githubusercontent.com/nylo-andry/3997684/raw/94591b5d8c405e3e90945dd512ea77c8b6de8fde/basic.aiml
+
+License
+----
+
+MIT
+
+[//]: # 
+   [Telepot]: <https://github.com/nickoala/telepot>
+   [aiml]: <https://pypi.python.org/pypi/aiml/0.8.6>

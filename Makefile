@@ -1,11 +1,10 @@
 install:
 	pip install telepot
 	pip install pyaiml
+	python setup.py develop	
 
 remove:
-	rm aiml/bot_brain.brn
+	rm pitalk/aiml/bot_brain.brn
 
 run:
-	$(install)
-	$(remove)
 	python -m pitalk.app
